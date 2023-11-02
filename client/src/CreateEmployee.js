@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 function CreateEmployee() {
     const [name, setName] = useState()
@@ -9,12 +10,14 @@ function CreateEmployee() {
     const [dateofbirth, setDateofbirth] = useState()
     const [employeeposition, setEmployeeposition] = useState()
     const [phonenumber, setPhonenumber] = useState()
+    const navigate = useNavigate()
 
     const Submit = (e) => {
         e.preventDefault();
         axios.post("http://localhost:3001/createEmployee", {name, surname, email, bio, dateofbirth, employeeposition, phonenumber})
         .then(result => console.log(result))
         .catch(err => console.log(err))
+        navigate('/')
     }
 
   return (
